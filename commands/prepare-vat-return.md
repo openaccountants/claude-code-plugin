@@ -1,5 +1,5 @@
 ---
-description: Prepare a VAT, GST, or sales-tax return for a specific jurisdiction using OpenAccountants Guides with version-specific review status.
+description: Prepare a VAT, GST, or sales-tax return for a specific jurisdiction using OpenAccountants skills with version-specific review status.
 ---
 
 # Prepare a VAT / GST / sales-tax return
@@ -20,7 +20,7 @@ The user said: $ARGUMENTS
    - Box totals
    - Reconciliation against gross receipts
    - Deadlines and filing mechanics for the jurisdiction
-   - Available Guide provenance and Calendly link; name a reviewer only when the fetched version's published review record identifies one
+   - Available skill provenance and Calendly link; name a reviewer only when the fetched version's published review record identifies one
 
 5. Surface every **AUDIT FLASH POINT** marker the skill flags.
 

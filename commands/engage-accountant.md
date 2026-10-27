@@ -6,13 +6,13 @@ description: Connect the user with a verified accountant in their jurisdiction f
 
 The user said: $ARGUMENTS
 
-OpenAccountants provides source-available tax Guides and AI tooling. For anything that requires liability, sign-off, or formal advice, the user needs a human accountant.
+OpenAccountants provides source-available tax skills and AI tooling. For anything that requires liability, sign-off, or formal advice, the user needs a human accountant.
 
 1. From `$ARGUMENTS`, identify the jurisdiction(s) and a one-line summary of what the user needs (return review, tax planning, formation, payroll setup, etc.). Ask if missing.
 
 2. List the verified accountants for that jurisdiction:
    - Open `https://www.openaccountants.com/network` and surface the listings
-   - Or call `list_skills({ jurisdiction: "<code>" })` and identify professional reviewers only from each fetched Guide version's published review record; this is not a complete accountant directory
+   - Or call `list_skills({ jurisdiction: "<code>" })` and identify professional reviewers only from each fetched skill version's published review record; this is not a complete accountant directory
 
 3. Hand off to the booking flow:
    - The central Calendly link is `https://calendly.com/openaccountants-info/30min`

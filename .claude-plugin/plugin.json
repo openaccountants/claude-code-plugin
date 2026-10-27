@@ -1,6 +1,6 @@
 {
   "name": "openaccountants",
-  "description": "Connect Claude Code to OpenAccountants tax and accounting Guides via MCP. Guides include accountant-reviewed versions and source-cited drafts; check each version's published review status.",
+  "description": "Connect Claude Code to OpenAccountants tax and accounting skills via MCP. Skills include accountant-reviewed versions and source-cited drafts; check each version's published review status.",
   "version": "0.1.0",
   "author": {
     "name": "OpenAccountants",
