@@ -1,6 +1,6 @@
 {
   "name": "openaccountants",
-  "description": "On-demand access to 800+ accountant-verified tax skills across 190+ jurisdictions via MCP. Every skill is signed off by a named licensed accountant. Covers income tax, VAT/GST, payroll, formation, and cross-border issues.",
+  "description": "Connect Claude Code to OpenAccountants tax and accounting skills via MCP. Skills include accountant-reviewed versions and source-cited drafts; check each version's published review status.",
   "version": "0.1.0",
   "author": {
     "name": "OpenAccountants",

@@ -20,7 +20,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-Note: this MIT license covers the plugin wrapper code only. The underlying
-skill content fetched from the OpenAccountants MCP server is licensed under
-AGPL-3.0 with attribution requirements per
-https://github.com/openaccountants/openaccountants/blob/main/LICENSE-ADDITIONAL.md
+Note: this MIT licence covers the plugin wrapper only. For fetched skill
+content, consult the terms for that version in the source repository:
+https://github.com/openaccountants/openaccountants/blob/main/LICENSING.md

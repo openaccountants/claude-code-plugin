@@ -2,7 +2,7 @@
   "mcpServers": {
     "openaccountants": {
       "url": "https://www.openaccountants.com/api/mcp",
-      "transport": "streamable_http"
+      "type": "http"
     }
   }
 }

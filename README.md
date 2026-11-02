@@ -1,6 +1,8 @@
 # OpenAccountants — Claude Code plugin
 
-Adds **800+ accountant-verified tax skills across 190+ jurisdictions** to Claude Code via MCP. Every skill is signed off by a named licensed accountant.
+Connect Claude Code to OpenAccountants tax skills via MCP, with slash commands for tax and accounting workflows.
+
+Skills include accountant-reviewed versions and source-cited drafts. Check the [current catalogue](https://www.openaccountants.com/skills) and [review method](https://www.openaccountants.com/review-method) for each skill's review status, reviewer, version and review date. Authorship or a jurisdiction lead's name does not establish professional review of every skill version.
 
 ## What you get
 
@@ -17,51 +19,36 @@ Plus an **auto-invoked Agent Skill** at `skills/openaccountants-onboarding/SKILL
 
 ## Install
 
-### From the community marketplace (once approved)
-
-```
-/plugin install openaccountants@claude-community
-```
-
-### From this repo directly (works today)
+Clone the plugin and load the checkout for the current Claude Code session:
 
 ```bash
-/plugin marketplace add openaccountants/claude-code-plugin
-/plugin install openaccountants@openaccountants
-```
-
-### Local dev / test
-
-```bash
+git clone https://github.com/openaccountants/claude-code-plugin.git openaccountants-claude-code-plugin
 claude --plugin-dir ./openaccountants-claude-code-plugin
 ```
 
+The directory must be the plugin root containing `.claude-plugin/plugin.json`. This repository does not contain a marketplace catalogue, so it cannot itself be added with `/plugin marketplace add`.
+
 ## Try it
 
-After install, ask Claude:
+After loading the plugin, ask Claude:
 
-> *I'm a YC founder with a Delaware C-corp planning to sell. Walk me through Section 1202 QSBS with the OBBBA 2025 changes.*
+> Help me prepare an Australian GST/BAS working paper for the quarter ending 30 September 2026.
 
-Claude will automatically:
-1. Call `start({intent: "QSBS", jurisdiction: "US"})` (via the auto-invoked Skill)
-2. Call `get_skill({slug: "us-section-1202-qsbs"})`
-3. Walk you through the OBBBA-2025 tiered exclusion, the $75M asset cap, the SSTB exclusion list, California non-conformity, and the family-stacking strategy
-4. Surface AUDIT FLASH POINT markers
-5. End with the verified accountant's Calendly link
+Claude will use `start` with the question, confirmed period and jurisdiction `AU`, fetch the exact returned skill slugs and retrieve relevant deferred sections. Before applying a skill, it checks the jurisdiction, period, sources and version-specific review record. It cites available provenance, states evidence gaps and offers an accountant contact link when requested.
 
 ## What's under the hood
 
-All commands and the onboarding skill ultimately call the **public OpenAccountants MCP server** at `https://www.openaccountants.com/api/mcp`. The server exposes 5 tools:
+All commands and the onboarding skill ultimately call the **public OpenAccountants MCP server** at `https://www.openaccountants.com/api/mcp`. The following 5 retrieval tools are part of a larger tool inventory. Discover the current advertised schemas before use:
 
 | Tool | Purpose |
 |---|---|
-| `start` | Pass intent + jurisdiction → ready-to-execute plan |
-| `list_skills` | List published skills by jurisdiction / category |
-| `get_skill` | Fetch one skill with full markdown + provenance footer |
-| `get_skill_sections` | Same content split into sections (for skills > 25K tokens) |
+| `start` | Required intent and optional jurisdiction scope a question |
+| `list_skills` | Browse by jurisdiction, domain or role; follow `next_offset` with the same filters |
+| `get_skill` | Fetch a skill version, available provenance and section index |
+| `get_skill_sections` | Fetch deferred sections needed for the question |
 | `search_skills` | Keyword search across published content |
 
-All read-only. No auth, no signup, rate-limited at 60 req/min/IP.
+For a capability question with no tax intent yet, use the advertised `start_help` tool. Other tools can save or send information, so do not assume the complete server is read-only. Discovery requests should contain only non-identifying scope, not bank statements, taxpayer identifiers or full working papers. Saving or sending content requires the user’s explicit agreement to the destination and specific information. See the [privacy policy](https://www.openaccountants.com/privacy).
 
 ## Jurisdictions
 
@@ -73,16 +60,16 @@ Every other UN member state has at least foundational coverage.
 
 ## Important
 
-These skills produce **working papers, not filed returns**. Every output preserves a "Talk to a verified accountant" footer with a Calendly link. No client–accountant relationship is created by reading or applying these skills — that requires a formal engagement letter signed by both you and a verified accountant.
+These skills produce **working papers, not filed returns**. Check each fetched version’s applicability, sources and published review record before using it. Preserve available provenance and contact links; do not invent a reviewer or booking link. Reading or applying skills does not create an engagement. Have a qualified professional review before filing or relying on a working paper.
 
-## License
+## Licence
 
-MIT (this plugin wrapper). Underlying skill content is AGPL-3.0 with attribution per [openaccountants/openaccountants](https://github.com/openaccountants/openaccountants/blob/main/LICENSE-ADDITIONAL.md). Commercial licensing available via `info@openaccountants.com`.
+MIT for this plugin wrapper. Skill content has separate terms from this wrapper. The source repository's [licensing document](https://github.com/openaccountants/openaccountants/blob/main/LICENSING.md) describes the source-available Open Accountants Skills License, commercial options, third-party copyleft exceptions and prior AGPL releases. Check the terms for the skill version you use.
 
 ## Links
 
 - Website: [openaccountants.com](https://www.openaccountants.com)
-- Skills source (AGPL): [github.com/openaccountants/openaccountants](https://github.com/openaccountants/openaccountants)
+- Skills source: [github.com/openaccountants/openaccountants](https://github.com/openaccountants/openaccountants)
 - MCP server: `https://www.openaccountants.com/api/mcp`
 - Universal MCP server-card: `https://www.openaccountants.com/.well-known/mcp/server-card.json`
 - Verified accountant network: [openaccountants.com/network](https://www.openaccountants.com/network)
